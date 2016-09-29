@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -69,5 +70,17 @@ public class ProjetDao implements IProjetDao {
             throw new Exception();
         }
         LOGGER.debug("End call Dao layer remove 'Projet',id:{}",id);
+    }
+
+    @Override
+    public List<Projet> findByTitle(final String title){
+
+        return projetRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<Projet> findByTitleContaining(final String title){
+
+        return projetRepository.findByTitleContainingIgnoreCase(title);
     }
 }

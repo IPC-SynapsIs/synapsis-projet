@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -40,11 +41,10 @@ public class ProjetService implements IProjetService {
     @Override
     public Iterable<ProjetOut> getAll() {
         LOGGER.debug("Start call Service layer get all 'Projet OUT'");
-        ArrayList<Projet> projetsOutList = new ArrayList<>();
+        ArrayList<ProjetOut> projetsOutList = new ArrayList<ProjetOut>();
         Iterable<Projet> projetList = projetProxy.getAll();
         for (Projet projet : projetList){
-
-            projetsOutList.add(projet);
+            projetsOutList.add(POJOToBeanOut.getProjetOut(projet));
         }
         LOGGER.debug("End call Service layer get all 'Projet OUT'");
         return (Iterable) projetsOutList;
@@ -75,5 +75,31 @@ public class ProjetService implements IProjetService {
         LOGGER.debug("Start call Service layer remove 'Projet',id:{}",id);
         projetProxy.remove(id);
         LOGGER.debug("Start call Service layer remove 'Projet',id:{}",id);
+    }
+
+    @Override
+    public List<ProjetOut> findByTitle(final String title){
+        LOGGER.debug("Start call Service layer remove 'Projet'title:{}",title);
+
+        List<ProjetOut> projetsOutList = new ArrayList<ProjetOut>();
+        List<Projet> projetList = projetProxy.findByTitle(title);
+        for (Projet projet : projetList){
+            projetsOutList.add( POJOToBeanOut.getProjetOut(projet));
+        }
+
+        return  projetsOutList;
+    }
+
+    @Override
+    public List<ProjetOut> findByTitleContaining(final String title){
+        LOGGER.debug("Start call Service layer remove 'Projet'title:{}",title);
+
+        List<ProjetOut> projetsOutList = new ArrayList<ProjetOut>();
+        List<Projet> projetList = projetProxy.findByTitleContaining(title);
+        for (Projet projet : projetList){
+            projetsOutList.add( POJOToBeanOut.getProjetOut(projet));
+        }
+
+        return  projetsOutList;
     }
 }

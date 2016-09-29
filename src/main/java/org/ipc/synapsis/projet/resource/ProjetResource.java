@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,11 +27,13 @@ public class ProjetResource  {
 
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON )
-    public ResponseEntity add(@RequestBody final ProjetIn projetIn) {
+    public ResponseEntity add(@RequestBody final ProjetIn projetIn,HttpServletRequest request) {
         LOGGER.debug("Start call of the web service add new 'Projet',{}",projetIn);
         UUID id = projetService.add(projetIn);
         LOGGER.debug("End call of the web service add new 'Projet',{}",projetIn);
-        return ResponseEntity.created(URI.create("/api/projet/"+id)).build();
+
+        return ResponseEntity.created(URI.create(request.getRequestURL().append("/"+id).toString())).build();
+
     }
 
 
@@ -77,6 +81,34 @@ public class ProjetResource  {
         }
         LOGGER.debug("End call of the web service delete 'Projet' by id,id={}",id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/title/{title}", method = RequestMethod.GET)
+    public ResponseEntity findByTitle(@PathVariable final String title) throws Exception {
+        LOGGER.debug("Start call of the web service get 'Projet' by , title={}",title);
+        List<ProjetOut> listProjetOut = null;
+        try {
+            listProjetOut = projetService.findByTitle(title);
+        } catch (Exception e) {
+            LOGGER.warn("Exception get Projet");
+
+        }
+        LOGGER.debug("End call of  the web service get 'Projet' by , title={}",title);
+        return ResponseEntity.ok(listProjetOut);
+    }
+
+    @RequestMapping(value = "/criterias", method = RequestMethod.GET)
+    public ResponseEntity findByTitleContaining(@RequestParam final String title) throws Exception {
+        LOGGER.debug("Start call of the web service get 'Projet' by , title={}",title);
+        List<ProjetOut> listProjetOut = null;
+        try {
+            listProjetOut = projetService.findByTitleContaining(title);
+        } catch (Exception e) {
+            LOGGER.warn("Exception get Projet");
+
+        }
+        LOGGER.debug("End call of  the web service get 'Projet' by , title={}",title);
+        return ResponseEntity.ok(listProjetOut);
     }
 
 

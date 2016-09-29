@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by mbasri on 09/07/2016.
  */
@@ -56,5 +58,16 @@ public class ProjetProxy implements IProjetProxy {
         LOGGER.debug("Start call Proxy layer remove 'Projet',id:{}",id);
         projetDao.remove(id);
         LOGGER.debug("End call Proxy layer remove 'Projet',id:{}",id);
+    }
+    @Override
+    public List<Projet> findByTitle(final String title){
+        LOGGER.debug("Start call Proxy layer findByTitle 'title':{}",title);
+        return projetDao.findByTitle(title);
+    }
+
+    @Override
+    public List<Projet> findByTitleContaining(final String title){
+        LOGGER.debug("Start call Proxy layer findByTitle 'title':{}",title);
+        return projetDao.findByTitleContaining(title);
     }
 }
