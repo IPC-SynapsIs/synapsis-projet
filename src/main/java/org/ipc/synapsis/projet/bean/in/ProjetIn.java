@@ -1,11 +1,9 @@
 package org.ipc.synapsis.projet.bean.in;
 
 
+import java.io.Serializable;
 
-
-
-
-public class ProjetIn {
+public class ProjetIn implements Serializable{
 
 
     private String title;

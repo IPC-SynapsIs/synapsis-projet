@@ -9,6 +9,6 @@ eureka:
         leaseRenewalIntervalInSeconds: 10
         preferIpAddress: true
     client:
-        registryFetchIntervalSeconds: 5
+        registryFetchIntervalSeconds: 50
         serviceUrl:
             defaultZone: http://52.57.12.223:8761/eureka/

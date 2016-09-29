@@ -1,23 +1,21 @@
 package org.ipc.synapsis.projet.resource;
 
 
+import org.ipc.synapsis.projet.bean.in.ProjetIn;
 import org.ipc.synapsis.projet.bean.out.ProjetOut;
 import org.ipc.synapsis.projet.service.IProjetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.net.URI;
+import java.util.UUID;
 
-
-@Component
-@Path("/api/projet")
+@RestController
+@RequestMapping("/api/projet")
 public class ProjetResource  {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ProjetResource.class);
@@ -26,8 +24,8 @@ public class ProjetResource  {
     IProjetService projetService;
 
 
-   /* @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON )
-    public ResponseEntity add(final ProjetIn projetIn) {
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON )
+    public ResponseEntity add(@RequestBody final ProjetIn projetIn) {
         LOGGER.debug("Start call of the web service add new 'Projet',{}",projetIn);
         UUID id = projetService.add(projetIn);
         LOGGER.debug("End call of the web service add new 'Projet',{}",projetIn);
@@ -36,18 +34,16 @@ public class ProjetResource  {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON )
-    public ResponseEntity update(final String id, final ProjetIn projetIn) {
-        LOGGER.debug("Start call of the web service update 'Projet',{}",projetIn);
-        projetService.update(id,projetIn);
-        LOGGER.debug("End call of the web service update 'Projet',{}",projetIn);
+    public ResponseEntity update(@PathVariable final String id, @RequestBody final ProjetIn projetIn) {
+        LOGGER.debug("Start call of the web service update 'Projet',{}", projetIn);
+        projetService.update(id, projetIn);
+        LOGGER.debug("End call of the web service update 'Projet',{}", projetIn);
         return ResponseEntity.ok().build();
 
-    */
+    }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ResponseEntity get(@PathParam("id") final String id) throws Exception {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity get(@PathVariable final String id) throws Exception {
         LOGGER.debug("Start call of the web service get 'Projet' by id, id={}",id);
         ProjetOut projetOut = null;
         try {
@@ -59,7 +55,7 @@ public class ProjetResource  {
         LOGGER.debug("End call of  the web service get 'Projet' by id, id={}",id);
         return ResponseEntity.ok(projetOut);
     }
-    /*
+
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON )
     public ResponseEntity getAll() {
@@ -70,8 +66,8 @@ public class ProjetResource  {
     }
 
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity remove(final String id) throws Exception {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON)
+    public ResponseEntity remove(@PathVariable final String id) throws Exception {
         LOGGER.debug("Start call of the web service delete 'Projet' by id,id={}",id);
         try {
             projetService.remove(id);
@@ -83,11 +79,5 @@ public class ProjetResource  {
         return ResponseEntity.ok().build();
     }
 
-    */
-    @GET
-    @Path("/test")
-    public ResponseEntity health(){
-        LOGGER.debug("Call of the web service health");
-        return ResponseEntity.ok().build();
-    }
+
 }
