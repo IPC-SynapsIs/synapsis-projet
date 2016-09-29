@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 /**
- * Created by mbasri on 19/06/2016.
+ * Created by malaoui on 29/09/2016.
  */
 @Entity
 public class Projet {

@@ -5,7 +5,7 @@ package org.ipc.synapsis.projet.bean.out;
 import java.util.UUID;
 
 /**
- * Created by mbasri on 02/07/2016.
+ * Created by malaoui on 29/09/2016.
  */
 
 

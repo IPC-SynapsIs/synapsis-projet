@@ -2,6 +2,10 @@ package org.ipc.synapsis.projet.bean.in;
 
 
 import java.io.Serializable;
+/**
+ * Created by malaoui on 29/09/2016.
+ */
+
 
 public class ProjetIn implements Serializable{
 

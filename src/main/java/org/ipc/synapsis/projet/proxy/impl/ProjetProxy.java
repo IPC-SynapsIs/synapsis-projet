@@ -11,8 +11,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by mbasri on 09/07/2016.
+ * Created by malaoui on 29/09/2016.
  */
+
 @Component
 public class ProjetProxy implements IProjetProxy {
 

@@ -8,13 +8,14 @@ import java.util.UUID;
 
 
 /**
- * Created by mbasri on 19/06/2016.
+ * Created by malaoui on 29/09/2016.
  */
+
 public interface IProjetService {
     ProjetOut get(final String id) throws Exception;
     Iterable<ProjetOut> getAll();
-    UUID add(final ProjetIn curriculumVitaeIn);
-    void update(final String id, final ProjetIn curriculumVitaeIn);
+    UUID add(final ProjetIn projetIn);
+    void update(final String id, final ProjetIn projetIn);
     void remove(final String id) throws Exception;
     List findByTitle(final String title);
     List<ProjetOut> findByTitleContaining(final String title);
