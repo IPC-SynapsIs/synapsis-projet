@@ -10,7 +10,7 @@ public class POJOToBeanOut  {
         ProjetOut projetOut = new ProjetOut();
         projetOut.setId(projet.getId());
         projetOut.setTitle(projet.getTitle());
-        
+        projetOut.setDescription(projet.getDescription());
         return projetOut;
     }
 

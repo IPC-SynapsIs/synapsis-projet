@@ -80,7 +80,13 @@ public class ProjetDao implements IProjetDao {
 
     @Override
     public List<Projet> findByTitleContaining(final String title){
-
         return projetRepository.findByTitleContainingIgnoreCase(title);
     }
+
+	@Override
+	public List<Projet> findByDescriptionContaining(String description) {
+		return projetRepository.findByDescriptionContainingIgnoreCase(description);
+	}
+
+
 }

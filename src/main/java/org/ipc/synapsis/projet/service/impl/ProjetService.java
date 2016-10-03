@@ -102,4 +102,29 @@ public class ProjetService implements IProjetService {
 
         return  projetsOutList;
     }
+
+	@Override
+	public List<ProjetOut> findByDescriptionContaining(String description) {
+        LOGGER.debug("Start call Service layer remove 'Projet'description:{}",description);
+
+        List<ProjetOut> projetsOutList = new ArrayList<ProjetOut>();
+        List<Projet> projetList = projetProxy.findByDescriptionContaining(description);
+        for (Projet projet : projetList){
+            projetsOutList.add( POJOToBeanOut.getProjetOut(projet));
+        }
+
+        return  projetsOutList;
+	}
+
+	@Override
+	public boolean isHere(String id) {
+		 try {
+		        UUID.fromString(id);
+		        Projet projet = projetProxy.get(id);
+		        return (projet != null);
+		    } 
+		 catch (Exception ex) {
+		        return false;
+		    }
+	}
 }

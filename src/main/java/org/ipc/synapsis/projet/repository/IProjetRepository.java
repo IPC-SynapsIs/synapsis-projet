@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface IProjetRepository extends CrudRepository<Projet, UUID> {
     List<Projet> findByTitle(String title);
     List<Projet> findByTitleContainingIgnoreCase(String title);
+	List<Projet> findByDescriptionContainingIgnoreCase(String description);
 }

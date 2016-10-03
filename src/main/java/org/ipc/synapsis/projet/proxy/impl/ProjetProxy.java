@@ -71,4 +71,10 @@ public class ProjetProxy implements IProjetProxy {
         LOGGER.debug("Start call Proxy layer findByTitle 'title':{}",title);
         return projetDao.findByTitleContaining(title);
     }
+
+	@Override
+	public List<Projet> findByDescriptionContaining(String description) {
+        LOGGER.debug("Start call Proxy layer findByDescriptionContaining 'description':{}", description);
+        return projetDao.findByDescriptionContaining(description);
+	}
 }

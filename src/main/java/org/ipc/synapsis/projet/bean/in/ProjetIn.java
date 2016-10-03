@@ -11,14 +11,18 @@ public class ProjetIn implements Serializable{
 
 
     private String title;
+    
+	private String description;
+
 
 
 
     public ProjetIn() {
     }
 
-    public ProjetIn(String title) {
+    public ProjetIn(String title,String description) {
         this.setTitle(title);
+        this.setDescription(description);
     }
 
     public String getTitle() {
@@ -29,13 +33,17 @@ public class ProjetIn implements Serializable{
         this.title = title;
     }
 
+    public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    @Override
-    public String toString() {
-        return "ProjetIn{" +
-                "title='" + title + '\'' +
+	@Override
+	public String toString() {
+		return "ProjetIn [title=" + title + ", description=" + description + "]";
+	}
 
-                '}';
-    }
 }

@@ -15,4 +15,5 @@ public interface IProjetProxy {
     void remove(final String id) throws Exception;
     List<Projet> findByTitle(final String title);
     List<Projet> findByTitleContaining(final String title);
+    List<Projet> findByDescriptionContaining(final String description);
 }

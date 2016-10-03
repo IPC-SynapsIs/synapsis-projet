@@ -9,6 +9,7 @@ public class BeanInToPOJO {
     public static Projet getProjet(ProjetIn projetIn){
         Projet projet = new Projet();
         projet.setTitle(projetIn.getTitle());
+        projet.setDescription(projetIn.getDescription());
         return projet;
     }
 

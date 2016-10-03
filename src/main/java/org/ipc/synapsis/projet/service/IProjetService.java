@@ -19,4 +19,6 @@ public interface IProjetService {
     void remove(final String id) throws Exception;
     List findByTitle(final String title);
     List<ProjetOut> findByTitleContaining(final String title);
+    List<ProjetOut> findByDescriptionContaining(final String description);
+	boolean isHere(String id);
 }
