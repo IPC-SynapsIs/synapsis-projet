@@ -4,6 +4,7 @@ import org.ipc.synapsis.projet.bean.in.ProjetIn;
 import org.ipc.synapsis.projet.bean.out.ProjetOut;
 import org.ipc.synapsis.projet.entity.Projet;
 import org.ipc.synapsis.projet.proxy.IProjetProxy;
+import org.ipc.synapsis.projet.proxy.impl.ProjetProxy;
 import org.ipc.synapsis.projet.service.IProjetService;
 import org.ipc.synapsis.projet.util.BeanInToPOJO;
 import org.ipc.synapsis.projet.util.POJOToBeanOut;
@@ -126,5 +127,23 @@ public class ProjetService implements IProjetService {
 		 catch (Exception ex) {
 		        return false;
 		    }
+	}
+
+	@Override
+	public ProjetOut addCategorie(String id, String categorie) {
+		LOGGER.debug("Start call Service layer add 'Projet categorie'id:{}",id);
+		return POJOToBeanOut.getProjetOut(projetProxy.addCategorie(id, categorie));
+	}
+
+	@Override
+	public ProjetOut removeCategorie(String id, String categorie) {
+		LOGGER.debug("Start call Service layer remove 'Projet categorie'id:{}",id);
+		return POJOToBeanOut.getProjetOut(projetProxy.removeCategorie(id, categorie));
+	}
+
+	@Override
+	public List<String> getCategories(String id) {
+		LOGGER.debug("Start call Service layer get 'Projet categories'id:{}",id);
+		return projetProxy.getCategories(id);
 	}
 }

@@ -11,6 +11,7 @@ public class POJOToBeanOut  {
         projetOut.setId(projet.getId());
         projetOut.setTitle(projet.getTitle());
         projetOut.setDescription(projet.getDescription());
+        projetOut.setCategories(projet.getCategories());
         return projetOut;
     }
 

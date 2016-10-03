@@ -164,5 +164,76 @@ public class ProjetResource  {
         return ResponseEntity.ok(listProjetOut);
     }
 
+    @ApiOperation(value = "Get Projet Categories")
+   	@ApiResponses(value = { 
+   			@ApiResponse(code = 200, message = "Projet found", response = URI.class),
+   			@ApiResponse(code = 404, message = "Projet not found", response = URI.class),
+   			@ApiResponse(code = 422, message = "Projet : technical Error", response = URI.class) })
+    @RequestMapping(value = "/{id}/categories", method = RequestMethod.GET)
+    public ResponseEntity getCategories(
+    		   @PathVariable final String id) throws Exception {
+           LOGGER.debug("Start call of the web service get 'Projet' categories by id, id={}",id);
+           if(projetService.isHere(id))
+           {
+   	        ProjetOut projetOut = null;
+   	        try {
+   	            projetOut = projetService.get(id);
+   	        } catch (Exception e) {
+   	            LOGGER.warn("Exception get Projet");
+   	            return ResponseEntity.unprocessableEntity().build();
+   	        }
+   	        LOGGER.debug("End call of  the web service get 'Projet' categories by id, id={}",id);
+   	        return ResponseEntity.ok(projetOut.getCategories());
+           }
+           else return ResponseEntity.notFound().build();
+       }
 
+    @ApiOperation(value = "ADD a categorie to Projet")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 201, message = "Projet creation : Done", response = URI.class) })
+    @RequestMapping(value = "/{id}/categories/{categorie}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON )
+    public ResponseEntity addCategorie( 
+    		@PathVariable final String id,
+    		@PathVariable final String categorie) {
+        LOGGER.debug("Start call of the web service add new 'Projet categorie', id = {}",id);
+        if(projetService.isHere(id))
+        {
+	        ProjetOut projetOut = null;
+	        try {
+	            projetOut = projetService.addCategorie(id, categorie);
+	        } catch (Exception e) {
+	            LOGGER.warn("Exception get Projet");
+	            return ResponseEntity.unprocessableEntity().build();
+	        }
+	        LOGGER.debug("End call of the web service add new 'Projet categorie',id = {}",id);
+	        return ResponseEntity.ok(projetOut.getCategories());
+        }
+        else return ResponseEntity.notFound().build();
+
+    }
+    
+    @ApiOperation(value = "Delete a Projet categorie")
+   	@ApiResponses(value = { 
+   			@ApiResponse(code = 204, message = "Projet deleted", response = URI.class),
+   			@ApiResponse(code = 404, message = "Projet not found", response = URI.class) })
+       @RequestMapping(value = "/{id}/categories/{categorie}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON)
+     public ResponseEntity remove(    		
+    		    @PathVariable final String id,
+       			@PathVariable final String categorie) throws Exception {
+	      LOGGER.debug("Start call of the web service remove 'Projet categorie',id = {}",id);
+    	  if(projetService.isHere(id))
+          {
+  	        ProjetOut projetOut = null;
+  	        try {
+  	            projetOut = projetService.removeCategorie(id, categorie);
+  	        } catch (Exception e) {
+  	            LOGGER.warn("Exception get Projet");
+  	            return ResponseEntity.unprocessableEntity().build();
+  	        }
+  	        LOGGER.debug("End call of the web service remove 'Projet categorie',id = {}",id);
+  	        return ResponseEntity.ok(projetOut.getCategories());
+          }
+          else return ResponseEntity.notFound().build();
+           
+       }
 }

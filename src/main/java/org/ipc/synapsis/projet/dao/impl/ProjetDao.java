@@ -89,4 +89,51 @@ public class ProjetDao implements IProjetDao {
 	}
 
 
+	@Override
+	public Projet addCategorie(String id, String categorie) {
+	    LOGGER.debug("Start call Dao layer add a 'Projet Categorie',id:{}",id);
+        Projet Projet = null;
+        try {
+            Projet = projetRepository.findOne(UUID.fromString(id));
+            List<String> categories = Projet.getCategories();
+            categories.add(categorie);
+            Projet.setCategories(categories);
+            return projetRepository.save(Projet);
+        }catch (IllegalArgumentException e){
+            return null;
+        }
+
+	}
+
+	@Override
+	public Projet removeCategorie(String id, String categorie) {
+	    LOGGER.debug("Start call Dao layer remove a 'Projet Categorie',id:{}",id);
+        Projet Projet = null;
+        try {
+            Projet = projetRepository.findOne(UUID.fromString(id));
+            List<String> categories = Projet.getCategories();
+            categories.remove(categorie);
+            Projet.setCategories(categories);
+            return projetRepository.save(Projet);
+        }catch (IllegalArgumentException e){
+            return null;
+        }
+	}
+
+	@Override
+	public List<String> getCategories(String id) {
+	    LOGGER.debug("Start call Dao layer get a 'Projet Categories',id:{}",id);
+        Projet Projet = null;
+        try {
+            Projet = projetRepository.findOne(UUID.fromString(id));
+            return Projet.getCategories();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
+
+	}
+
+
+	
+
 }

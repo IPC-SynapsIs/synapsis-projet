@@ -15,5 +15,7 @@ public interface IProjetDao {
     List<Projet> findByTitle(final String title);
     List<Projet> findByTitleContaining(final String title);
     List<Projet> findByDescriptionContaining(final String description);
-
+    Projet addCategorie(final String id, final String categorie);
+    Projet removeCategorie(final String id, final String categorie);
+    List<String> getCategories(final String id);
 }

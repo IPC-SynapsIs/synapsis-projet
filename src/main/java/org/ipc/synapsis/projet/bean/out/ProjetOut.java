@@ -2,6 +2,8 @@ package org.ipc.synapsis.projet.bean.out;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -18,14 +20,17 @@ public class ProjetOut {
 	private String title;
 
 	private String description;
+	
+	private List<String> categories = new ArrayList<String>();
 
 	public ProjetOut() {
 	}
 
-	public ProjetOut(UUID id, String title, String description) {
+	public ProjetOut(UUID id, String title, String description,List<String> categories) {
 		this.setId(id);
 		this.setTitle(title);
 		this.setDescription(description);
+		this.setCategories(categories);
 	}
 
 
@@ -53,10 +58,22 @@ public class ProjetOut {
 		this.description = description;
 	}
 
+	
+	public List<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
+	}
+
 	@Override
 	public String toString() {
-		return "ProjetOut [id=" + id + ", title=" + title + ", description=" + description + "]";
+		return "ProjetOut [id=" + id + ", title=" + title + ", description=" + description + ", categories="
+				+ categories + "]";
 	}
+
+
 
 
 	

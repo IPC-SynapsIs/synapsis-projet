@@ -1,8 +1,12 @@
 package org.ipc.synapsis.projet.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -30,6 +34,11 @@ public class Projet {
 	@ApiModelProperty(value = "La description du projet")
 	private String description;
 
+	
+	@ElementCollection
+	@CollectionTable(name ="tags")
+	private List<String> categories = new ArrayList<String>();
+	
 	public Projet() {
 	}
 
@@ -70,12 +79,29 @@ public class Projet {
 		this.description = description;
 	}
 
+	
+
+
+	public List<String> getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return "Projet [id=" + id + ", title=" + title + ", description=" + description + "]";
+		return "Projet [id=" + id + ", title=" + title + ", description=" + description + ", categories=" + categories
+				+ "]";
 	}
+
+
+
 
 
 }

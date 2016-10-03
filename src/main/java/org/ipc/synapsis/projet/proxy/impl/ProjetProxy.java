@@ -77,4 +77,22 @@ public class ProjetProxy implements IProjetProxy {
         LOGGER.debug("Start call Proxy layer findByDescriptionContaining 'description':{}", description);
         return projetDao.findByDescriptionContaining(description);
 	}
+
+	@Override
+	public Projet addCategorie(String id, String categorie) {
+        LOGGER.debug("Start call Proxy layer add 'Projet categorie',id:{}",id);
+		return projetDao.addCategorie(id, categorie);
+	}
+
+	@Override
+	public Projet removeCategorie(String id, String categorie) {
+        LOGGER.debug("Start call Proxy layer remove 'Projet categorie',id:{}",id);
+        return projetDao.removeCategorie(id, categorie);
+	}
+
+	@Override
+	public List<String> getCategories(String id) {
+        LOGGER.debug("Start call Proxy layer get 'Projet categories',id:{}",id);
+		return projetDao.getCategories(id);
+	}
 }
