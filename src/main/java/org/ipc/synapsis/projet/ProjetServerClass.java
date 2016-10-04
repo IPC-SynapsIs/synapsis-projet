@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
+@SpringBootApplication
 @EnableJpaRepositories(basePackages = {"org.ipc.synapsis.projet.repository"})
 public class ProjetServerClass {
 
