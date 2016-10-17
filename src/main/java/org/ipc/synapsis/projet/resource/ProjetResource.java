@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/projet")
+@RequestMapping("/projet/api")
 public class ProjetResource  {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ProjetResource.class);
