@@ -1,4 +1,4 @@
 spring:
   cloud:
     config:
-      uri: http://synapsis-configuration-lb:80
+      uri: http://synapsis-configuration:8888
